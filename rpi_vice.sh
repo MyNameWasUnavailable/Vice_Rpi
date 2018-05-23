@@ -26,11 +26,16 @@ XKBOPTIONS=""
 
 BACKSPACE="guess"
 EOF
+
 #setting hostname
 sudo sed -i "s/raspberrypi/Vice_pi/g" /etc/hostname
 echo "Installing window Manager environment"
 sudo apt-get install -y --no-install-recommends xserver-xorg x11-xserver-utils xinit openbox
-
+echo "setting system to login automatically at boot"
+ sudo systemctl set-default multi-user.target
+ sudo sed /etc/systemd/system/autologin@.service -i -e "s#^ExecStart=-/sbin/agetty --autologin [^[:space:]]*#ExecStart=-/sbin/agetty --autologin pi#"
+ sudo ln -fs /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service
+ 
 #build vice
 sudo apt install autoconf automake build-essential byacc dos2unix flex libavcodec-dev libavformat-dev libgtk2.0-cil-dev libgtkglext1-dev libmp3lame-dev libmpg123-dev libpcap-dev libpulse-dev libreadline-dev libswscale-dev libvte-dev libxaw7-dev subversion texi2html texinfo yasm libgtk3.0-cil-dev xa65 pulseaudio libsdl2-dev 
 mkdir -p src
@@ -52,4 +57,8 @@ xset -dpms
 setxkbmap -option terminate:ctrl_alt_bksp
 
 x64
+EOF
+echo "Making it startup Automatically"
+cat - >/home/pi/.bash_profile <<'EOF'
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx
 EOF
