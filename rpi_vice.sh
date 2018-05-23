@@ -56,7 +56,7 @@ xset -dpms
 # Allow quitting the X server with CTRL-ATL-Backspace
 setxkbmap -option terminate:ctrl_alt_bksp
 
-x64
+x64 -fullscreen
 EOF
 echo "Making it startup Automatically"
 cat - >/home/pi/.bash_profile <<'EOF'
