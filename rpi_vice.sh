@@ -43,7 +43,7 @@ cd src
 svn checkout https://svn.code.sf.net/p/vice-emu/code/trunk trunk
 cd trunk/vice
 ./autogen.sh
-./configure --enable-sdlui2
+./configure
 make -j4
 sudo make install
 
