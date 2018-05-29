@@ -29,4 +29,7 @@ EOF
 sudo sed -i "s/raspberrypi/Vice_pi/g" /etc/hostname
 # gecd
 git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
+cd Retropie-Setup
+sudo ./retropie_packages.sh 152 
+sudo ./retropie_packages.sh 853
 
