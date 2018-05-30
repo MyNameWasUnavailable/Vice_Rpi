@@ -24,7 +24,10 @@ XKBVARIANT=""
 XKBOPTIONS=""
 BACKSPACE="guess"
 EOF
-
+echo "setting system to login automatically at boot"
+ sudo systemctl set-default multi-user.target
+ sudo sed /etc/systemd/system/autologin@.service -i -e "s#^ExecStart=-/sbin/agetty --autologin [^[:space:]]*#ExecStart=-/sbin/agetty --autologin pi#"
+ sudo ln -fs /etc/systemd/system/autologin@.service /etc/systemd/system/getty.target.wants/getty@tty1.service
 #setting hostname
 sudo sed -i "s/raspberrypi/Vice_pi/g" /etc/hostname
 # gecd
@@ -32,4 +35,7 @@ git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 cd Retropie-Setup
 sudo ./retropie_packages.sh 152 
 sudo ./retropie_packages.sh 813
-
+echo "Making it startup Automatically"
+cat - >/home/pi/.bash_profile <<'EOF'
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx -- -nocursor
+EOF
