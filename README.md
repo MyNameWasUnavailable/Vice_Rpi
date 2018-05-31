@@ -5,6 +5,7 @@ This is an installation script to install Vice Commodore 64 emulator on a raspbe
 This script is not enitrely of my own work, and is reliant on the work of other projects, namely these below:
 
 https://github.com/RetroPie/RetroPie-Setup
+
 https://github.com/gilyes/pi-shutdown
 
 to install:
