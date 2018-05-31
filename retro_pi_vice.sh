@@ -33,12 +33,12 @@ sudo sed -i "s/raspberrypi/Vice_pi/g" /etc/hostname
 sudo sed -i "s/raspberrypi/Vice_pi/g" /etc/hosts
 # Get and install shutdown script 
 git clone https://github.com/gilyes/pi-shutdown.git
-sudo sed '$ i\/home/pi/pi-shutdown/pishutdown.py' /etc/rc.local -i
-sudo chmod +x /home/pi/pi-shutdown/pishutdown.py
+sudo sed '$ i\/home/pi/Vice_Rpi/pi-shutdown/pishutdown.py' /etc/rc.local -i
+sudo chmod +x /home/pi/Vice_Rpi/pi-shutdown/pishutdown.py
 # get retropie sources
 git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 #Install Vice emulator and gamecon gpio driver 
-cd Retropie-Setup
+cd RetroPie-Setup
 sudo ./retropie_packages.sh 152 
 sudo ./retropie_packages.sh 813
 sudo sed '$ i\db9_gpio_rpi' /etc/modules -i
