@@ -40,6 +40,8 @@ sudo chmod +x /home/pi/pi-shutdown/pishutdown.py
 echo "Downloading and installing RetroPie installation scripts"
 # get retropie sources
 git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
+#i needed to use https instead of svn
+sudo sed -i "s/svn checkout svn:/svn checkout https:/g" /home/pi/RetroPie-Setup/scriptmodules/emulators/vice.sh
 #Install Vice emulator and gamecon gpio driver 
 cd RetroPie-Setup
 sudo ./retropie_packages.sh 152 
