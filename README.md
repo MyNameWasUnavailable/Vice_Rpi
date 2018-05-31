@@ -23,7 +23,7 @@ to install:
 	
 	- sudo chmod +x retro_pi_vice.sh
 	
-	- sudo ./retro_pi_vice.sh
+	- ./retro_pi_vice.sh
 	
 On a pi zero w this took more than two hours to compile and install vice, have not as yet tested on a pi3!
 
