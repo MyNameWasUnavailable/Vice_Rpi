@@ -31,10 +31,12 @@ echo "setting system to login automatically at boot"
 #setting hostname
 sudo sed -i "s/raspberrypi/Vice_pi/g" /etc/hostname
 sudo sed -i "s/raspberrypi/Vice_pi/g" /etc/hosts
+# Get and install shutdown script 
+git clone https://github.com/gilyes/pi-shutdown.git
+sudo sed '$ i\/home/pi/pi-shutdown/pishutdown.py' /etc/rc.local -i
+sudo chmod +x /home/pi/pi-shutdown/pishutdown.py
 # get retropie sources
 git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
-# Get shutdown script 
-git clone https://github.com/gilyes/pi-shutdown.git
 #Install Vice emulator and gamecon gpio driver 
 cd Retropie-Setup
 sudo ./retropie_packages.sh 152 
