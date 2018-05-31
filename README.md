@@ -1,5 +1,8 @@
 # Vice_Rpi
 
+******* WARNING - Work in progress, not currently fully functional!  Use at own risk!********
+
+
 This is an installation script to install Vice Commodore 64 emulator on a raspberry pi.
 
 This script is not enitrely of my own work, and is reliant on the work of other projects, namely these below:
