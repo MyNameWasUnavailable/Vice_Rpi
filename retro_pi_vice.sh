@@ -41,7 +41,11 @@ git clone --depth=1 https://github.com/RetroPie/RetroPie-Setup.git
 cd Retropie-Setup
 sudo ./retropie_packages.sh 152 
 sudo ./retropie_packages.sh 813
+sudo sed '$ i\db9_gpio_rpi' /etc/modules -i
+cat <<- EOF | sudo tee /etc/modprobe.d/db9_gpio_rpi.conf> /dev/null
+options db9_gpio_rpi map=1,1
+EOF
 echo "Making it startup Automatically"
 cat - >/home/pi/.bash_profile <<'EOF'
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && startx -- -nocursor
+[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] &&  /opt/retropie/emulators/vice/bin/./x64
 EOF
