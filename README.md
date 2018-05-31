@@ -16,9 +16,11 @@ to install:
 	
 	- git clone https://github.com/MyNameWasUnavailable/Vice_Rpi.git
 	
-	- cd vice_rpi
+	- cd Vice_Rpi
 	
 	- sudo chmod +x retro_pi_vice.sh
 	
 	- sudo ./retro_pi_vice.sh
 	
+On a pi zero w this took over an hour to compile and install vice, have not as yet tested on a pi3
+
