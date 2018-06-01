@@ -35,7 +35,22 @@ cd /home/pi
 # Get and install shutdown script 
 echo "Downloading and installing shutdown script"
 git clone https://github.com/gilyes/pi-shutdown.git
-sudo sed '$ i\/home/pi/pi-shutdown/pishutdown.py' /etc/rc.local -i
+if [ ! -f /etc/systemd/system/pishutdown.service ]; then
+        echo "Injecting Pishutdown startup script..."
+        cat <<- EOF | sudo tee /etc/systemd/system/pishutdown.service > /dev/null
+            [Service]
+                ExecStart=/usr/bin/python /home/pi/pi-shutdown/pishutdown.py
+                WorkingDirectory=/home/pi/pi-shutdown/
+                Restart=always
+                StandardOutput=syslog
+                StandardError=syslog
+                SyslogIdentifier=pishutdown
+                User=root
+                Group=root
+            [Install]
+                WantedBy=multi-user.target
+EOF
+fi
 sudo chmod +x /home/pi/pi-shutdown/pishutdown.py
 echo "Downloading and installing RetroPie installation scripts"
 # get retropie sources
